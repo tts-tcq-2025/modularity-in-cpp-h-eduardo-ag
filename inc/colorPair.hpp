@@ -2,6 +2,7 @@
 #define COLORPAIR_HPP
 
 #include <iostream>
+#include <array>
 
 namespace TelCoColorCoder
 {
