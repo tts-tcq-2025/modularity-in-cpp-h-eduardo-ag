@@ -5,32 +5,45 @@
 
 namespace TelCoColorCoder
 {
+    enum MajorColor { WHITE, RED, BLACK, YELLOW, VIOLET };
+    enum MinorColor { BLUE, ORANGE, GREEN, BROWN, SLATE };
 
-    enum MajorColor {WHITE, RED, BLACK, YELLOW, VIOLET};
-    enum MinorColor {BLUE, ORANGE, GREEN, BROWN, SLATE};
+    inline const char* MajorColorNames[] = { "White", "Red", "Black", "Yellow", "Violet" };
+    inline int numberOfMajorColors = sizeof(MajorColorNames) / sizeof(MajorColorNames[0]);
 
-    extern const char* MajorColorNames[];
-    extern int numberOfMajorColors;
-
-    extern const char* MinorColorNames[];
-    extern int numberOfMinorColors;
+    inline const char* MinorColorNames[] = { "Blue", "Orange", "Green", "Brown", "Slate" };
+    inline int numberOfMinorColors = sizeof(MinorColorNames) / sizeof(MinorColorNames[0]);
 
     class ColorPair {
-        private:
-            MajorColor majorColor;
-            MinorColor minorColor;
-        public:
-            ColorPair(MajorColor major, MinorColor minor);
-            MajorColor getMajor();
-            MinorColor getMinor();
-            std::string ToString();
+    private:
+        MajorColor majorColor;
+        MinorColor minorColor;
+
+    public:
+        ColorPair(MajorColor major, MinorColor minor) :
+            majorColor(major), minorColor(minor) {}
+
+        MajorColor getMajor() { return majorColor; }
+        MinorColor getMinor() { return minorColor; }
+
+        std::string ToString() {
+            std::string colorPairStr = MajorColorNames[majorColor];
+            colorPairStr += " ";
+            colorPairStr += MinorColorNames[minorColor];
+            return colorPairStr;
+        }
     };
 
-    ColorPair GetColorFromPairNumber(int pairNumber);
+    inline ColorPair GetColorFromPairNumber(int pairNumber) {
+        int zeroBasedPairNumber = pairNumber - 1;
+        MajorColor majorColor = (MajorColor)(zeroBasedPairNumber / numberOfMinorColors);
+        MinorColor minorColor = (MinorColor)(zeroBasedPairNumber % numberOfMinorColors);
+        return ColorPair(majorColor, minorColor);
+    }
 
-    int GetPairNumberFromColor(MajorColor major, MinorColor minor);
-
+    inline int GetPairNumberFromColor(MajorColor major, MinorColor minor) {
+        return major * numberOfMinorColors + minor + 1;
+    }
 }
-
 
 #endif // COLORPAIR_HPP
