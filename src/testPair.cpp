@@ -1,7 +1,7 @@
 #include <iostream>
 #include <assert.h>
 
-#include "../inc/testPair.hpp"
+#include "testPair.hpp"
 
 
 void testNumberToPair(int pairNumber,

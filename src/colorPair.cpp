@@ -1,8 +1,8 @@
-#include "../inc/colorPair.hpp"
+#include "colorPair.hpp"
     
 namespace TelCoColorCoder
 {  
-    
+
     const char* MajorColorNames[] = { "White", "Red", "Black", "Yellow", "Violet" };
     int numberOfMajorColors = sizeof(MajorColorNames) / sizeof(MajorColorNames[0]);
 

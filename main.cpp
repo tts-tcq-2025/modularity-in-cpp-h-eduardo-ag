@@ -1,4 +1,4 @@
-#include "inc/testPair.hpp"
+#include "testPair.hpp"
 
 int main() {
     testNumberToPair(4, TelCoColorCoder::WHITE, TelCoColorCoder::BROWN);
