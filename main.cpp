@@ -1,15 +1,15 @@
-#include "inc/testPair.hpp"
-#include "inc/colorPair.hpp"
-#include "inc/manual.hpp"
+#include "testPair.hpp"
+#include "manual.hpp"
 
 int main() {
-    testNumberToPair(4, TelCoColorCoder::WHITE, TelCoColorCoder::BROWN);
-    testNumberToPair(5, TelCoColorCoder::WHITE, TelCoColorCoder::SLATE);
+    using namespace TelCoColorCoder;
 
-    testPairToNumber(TelCoColorCoder::BLACK, TelCoColorCoder::ORANGE, 12);
-    testPairToNumber(TelCoColorCoder::VIOLET, TelCoColorCoder::SLATE, 25);
+    testNumberToPair(4, MajorColor::WHITE, MinorColor::BROWN);
+    testNumberToPair(5, MajorColor::WHITE, MinorColor::SLATE);
 
-    TelCoColorCoder::PrintReferenceManual();
+    testPairToNumber(MajorColor::BLACK, MinorColor::ORANGE, 12);
+    testPairToNumber(MajorColor::VIOLET, MinorColor::SLATE, 25);
 
+    PrintReferenceManual();
     return 0;
 }

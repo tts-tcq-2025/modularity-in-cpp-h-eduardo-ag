@@ -1,41 +1,37 @@
-// #include "colorPair.hpp"
-    
-// namespace TelCoColorCoder
-// {  
+#include "colorPair.hpp"
 
-//     const char* MajorColorNames[] = { "White", "Red", "Black", "Yellow", "Violet" };
-//     int numberOfMajorColors = sizeof(MajorColorNames) / sizeof(MajorColorNames[0]);
+namespace TelCoColorCoder {
 
-//     const char* MinorColorNames[] = { "Blue", "Orange", "Green", "Brown", "Slate" };
-//     int numberOfMinorColors = sizeof(MinorColorNames) / sizeof(MinorColorNames[0]);
+    const std::array<const char*, 5> MajorColorNames =
+        {"White", "Red", "Black", "Yellow", "Violet"};
+    const std::array<const char*, 5> MinorColorNames =
+        {"Blue", "Orange", "Green", "Brown", "Slate"};
 
-//     ColorPair::ColorPair(MajorColor major, MinorColor minor) :
-//         majorColor(major), minorColor(minor) {}
+    const int numberOfMajorColors = MajorColorNames.size();
+    const int numberOfMinorColors = MinorColorNames.size();
 
-//     MajorColor ColorPair::getMajor() {
-//         return majorColor;
-//     }
+    ColorPair::ColorPair(MajorColor major, MinorColor minor)
+        : majorColor(major), minorColor(minor) {}
 
-//     MinorColor ColorPair::getMinor() {
-//         return minorColor;
-//     }
+    MajorColor ColorPair::getMajor() const { return majorColor; }
+    MinorColor ColorPair::getMinor() const { return minorColor; }
 
-//     std::string ColorPair::ToString() {
-//         std::string colorPairStr = MajorColorNames[majorColor];
-//         colorPairStr += " ";
-//         colorPairStr += MinorColorNames[minorColor];
-//         return colorPairStr;
-//     }
+    std::string ColorPair::ToString() const {
+        return std::string(MajorColorNames[static_cast<int>(majorColor)]) +
+               " " + MinorColorNames[static_cast<int>(minorColor)];
+    }
 
-//     ColorPair GetColorFromPairNumber(int pairNumber) {
-//         int zeroBasedPairNumber = pairNumber - 1;
-//         MajorColor majorColor = (MajorColor)(zeroBasedPairNumber / numberOfMinorColors);
-//         MinorColor minorColor = (MinorColor)(zeroBasedPairNumber % numberOfMinorColors);
-//         return ColorPair(majorColor, minorColor);
-//     }
+    ColorPair GetColorFromPairNumber(int pairNumber) {
+        int zeroBased = pairNumber - 1;
+        return ColorPair(
+            static_cast<MajorColor>(zeroBased / numberOfMinorColors),
+            static_cast<MinorColor>(zeroBased % numberOfMinorColors)
+        );
+    }
 
-//     int GetPairNumberFromColor(MajorColor major, MinorColor minor) {
-//         return major * numberOfMinorColors + minor + 1;
-//     }
+    int GetPairNumberFromColor(MajorColor major, MinorColor minor) {
+        return static_cast<int>(major) * numberOfMinorColors +
+               static_cast<int>(minor) + 1;
+    }
 
-// }
+}
