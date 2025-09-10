@@ -1,3 +1,6 @@
+#ifndef COLORPAIR_HPP
+#define COLORPAIR_HPP
+
 #include <iostream>
 
 namespace TelCoColorCoder
@@ -6,37 +9,21 @@ namespace TelCoColorCoder
     enum MajorColor {WHITE, RED, BLACK, YELLOW, VIOLET};
     enum MinorColor {BLUE, ORANGE, GREEN, BROWN, SLATE};
 
-    const char* MajorColorNames[] = {
-        "White", "Red", "Black", "Yellow", "Violet"
-    };
-    int numberOfMajorColors =
-        sizeof(MajorColorNames) / sizeof(MajorColorNames[0]);
-    const char* MinorColorNames[] = {
-        "Blue", "Orange", "Green", "Brown", "Slate"
-    };
-    int numberOfMinorColors =
-        sizeof(MinorColorNames) / sizeof(MinorColorNames[0]);
+    extern const char* MajorColorNames[];
+    extern int numberOfMajorColors;
+
+    extern const char* MinorColorNames[];
+    extern int numberOfMinorColors;
 
     class ColorPair {
         private:
             MajorColor majorColor;
             MinorColor minorColor;
         public:
-            ColorPair(MajorColor major, MinorColor minor):
-                majorColor(major), minorColor(minor)
-            {}
-            MajorColor getMajor() {
-                return majorColor;
-            }
-            MinorColor getMinor() {
-                return minorColor;
-            }
-            std::string ToString() {
-                std::string colorPairStr = MajorColorNames[majorColor];
-                colorPairStr += " ";
-                colorPairStr += MinorColorNames[minorColor];
-                return colorPairStr;
-            }
+            ColorPair(MajorColor major, MinorColor minor);
+            MajorColor getMajor();
+            MinorColor getMinor();
+            std::string ToString();
     };
 
     ColorPair GetColorFromPairNumber(int pairNumber);
@@ -44,3 +31,6 @@ namespace TelCoColorCoder
     int GetPairNumberFromColor(MajorColor major, MinorColor minor);
 
 }
+
+
+#endif // COLORPAIR_HPP
